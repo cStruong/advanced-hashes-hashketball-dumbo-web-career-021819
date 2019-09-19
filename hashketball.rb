@@ -117,25 +117,42 @@ def game_hash
   }
 end
 
-#...need game_hash[:home][:team_info][:players][:stats]
-def num_points_scored(player_name)
+def num_to_name(num)
   game_hash.each { |location, team_info|
     team_info[:players].each { |players, stats|
-      if players.to_s == player_name
-        return stats[:points]
+      if stats[:number] == num
+        return players.to_s
       end
     }
   }
+  
+end
+
+puts num_to_name(33)
+
+#...need game_hash[:home][:team_info][:players][:stats]
+def num_points_scored(player_name)
+#  game_hash.each { |location, team_info|
+#    team_info[:players].each { |players, stats|
+#      if players.to_s == player_name
+#        return stats[:points]
+#      end
+#    }
+#  }
+
+  player_stats(player_name)[:points]
 end
 
 def shoe_size(player_name)
-  game_hash.each { |location, team_info|
-    team_info[:players].each { |players, stats|
-      if players.to_s == player_name
-        return stats[:shoe]
-      end
-    }
-  }
+#game_hash.each { |location, team_info|
+#    team_info[:players].each { |players, stats|
+#      if players.to_s == player_name
+#        return stats[:shoe]
+#      end
+#    }
+#  }
+
+  player_stats(player_name)[:shoe]
 end
 
 def team_colors(team_name)
